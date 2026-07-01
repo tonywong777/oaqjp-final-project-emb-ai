@@ -9,6 +9,8 @@ def emotion_detector(text_to_analyze):
 
     response = requests.post(url, json=myobj, headers=header)
 
+    print(response.status_code)
+
     if response.status_code == 200:
         # Parse the response from the API
         formatted_response = json.loads(response.text)
@@ -26,7 +28,7 @@ def emotion_detector(text_to_analyze):
         dominant_emotion = max(emotions, key=emotions.get)
 
     # If the response status code is 500, set all emotion to None		
-    elif response.status_code == 400:
+    elif response.status_code == 400:        
         anger_score = None
         disgust_score = None
         fear_score = None
